@@ -7,7 +7,7 @@ void main() {
   int i = 0;
   var isCorrect = false;
 
-  print('             GUESS THE NUMBER ❤            ');
+  print('             GUESS THE NUMBER ❤ 18/12           ');
   print('──────────────────────────────────────────');
 
   do {
