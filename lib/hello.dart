@@ -6,8 +6,10 @@ void main() {
   var answer = r.nextInt(100) + 1;
   int i = 0;
   var isCorrect = false;
-
-  print('             GUESS THE NUMBER ❤ 18/12           ');
+  int j = 0;
+  var myList = <int>[];
+  print('──────────────────────────────────────────');
+  print('            GUESS THE NUMBER ❤           ');
   print('──────────────────────────────────────────');
 
   do {
@@ -24,19 +26,56 @@ void main() {
       continue;
     }
 
-    if (guess == answer) {
+    if (guess > answer) {
+      print('➜ $guess is TOO HIGH ▲');
+      isCorrect = false;
+      i++;
+    }
+    else if(guess < answer) {
+      print('➜ $guess is TOO LOW ▼');
+      isCorrect = false;
+      i++;
+    }
+    else if (guess == answer) {
       i++;
       print('➜ $guess is CORRECT!, Total guesses $i ❤');
       isCorrect = true;
       print('───────────────── The End ──────────────');
-    } else if (guess > answer) {
-      print('➜ $guess is TOO HIGH ▲');
-      isCorrect = false;
-      i++;
-    } else {
-      print('➜ $guess is TOO LOW ▼');
-      isCorrect = false;
-      i++;
+      myList.add(i);
+      var ip;
+      var check = false;
+
+      do{
+        stdout.write('Play again? (Y/N) : ');
+        ip = stdin.readLineSync();
+        if(ip==null){
+          continue;
+        }
+        if(ip=='y'|| ip=='Y'|| ip=='n' || ip=='N' ){
+          check = true;
+        }
+        else{
+          check = false;
+        }
+      }while(!check);
+
+      if (ip == 'y' || ip == 'Y') {
+        i=0;
+        isCorrect = false;
+        print('──────────────────────────────────────────');
+        print('            GUESS THE NUMBER ❤           ');
+        print('──────────────────────────────────────────');
+        continue;
+      }
+      else if (ip == 'n' || ip == 'N') {
+        var len = myList.length;
+        print('You are played $len games.');
+        for (var i = 0; i < myList.length; i++) {
+          var x = i + 1;
+          var list = myList[i];
+          print('🚀 Game #$x : $list guesses.');
+        }
+      }
     }
   } while (!isCorrect);
 
